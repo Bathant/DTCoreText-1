@@ -54,11 +54,13 @@ ul,menu,dir
 	-webkit-margin-start:0;
 	-webkit-margin-end:0;
 	-webkit-padding-start:27px;
+    margin-right: 20px;
 }
 
 li
 {
 	display:list-item;
+    margin-bottom:10px;
 }
 
 ol
@@ -70,6 +72,7 @@ ol
 	-webkit-margin-start:0;
 	-webkit-margin-end:0;
 	-webkit-padding-start:27px;
+    margin-right: 20px;
 }
 
 ul ul, ol ul 

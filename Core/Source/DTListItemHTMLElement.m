@@ -86,7 +86,11 @@
 	
 	self.paragraphStyle.headIndent = listIndents + _padding.left + _margins.left;
 	self.paragraphStyle.firstLineHeadIndent = self.paragraphStyle.headIndent;
-	
+    if (self.paragraphStyle.alignment == kCTTextAlignmentRight) {
+        self.paragraphStyle.baseWritingDirection = kCTWritingDirectionRightToLeft;
+    } else {
+        self.paragraphStyle.baseWritingDirection = kCTWritingDirectionLeftToRight;
+    }
 	_margins.left += parentPadding;
 }
 
@@ -140,7 +144,7 @@
 		}
 		
 		// first tab is to right-align bullet, numbering against
-		CGFloat tabOffset = paragraphStyle.headIndent - (CGFloat)5.0; // TODO: change with font size
+		CGFloat tabOffset = paragraphStyle.headIndent - (CGFloat)self.fontDescriptor.pointSize; // TODO: change with font size
 		
 #if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
 		[paragraphStyle addTabStopAtPosition:tabOffset alignment:kCTTextAlignmentRight];
