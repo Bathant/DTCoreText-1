@@ -96,16 +96,21 @@
 
 - (CTFramesetterRef)framesetter
 {
-	@synchronized(self)
-	{
-		if (!_framesetter)
-		{
-			_framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)self.attributedString);
-		}
-		
-		
-		return _framesetter;
-	}
+    @synchronized(self)
+    {
+        if (!_framesetter)
+        {
+            if (@available(iOS 12.0, *)) {
+                CFDictionaryRef typeSetterDic = (__bridge CFDictionaryRef)([NSDictionary dictionaryWithObject:@"true" forKey:kCTTypesetterOptionAllowUnboundedLayout]);
+                CFAttributedStringRef cFAttributedString =(__bridge  CFAttributedStringRef)(_attributedString);
+                CTTypesetterRef typesetter =  CTTypesetterCreateWithAttributedStringAndOptions(cFAttributedString,typeSetterDic);
+                _framesetter = CTFramesetterCreateWithTypesetter(typesetter);
+            } else {
+                _framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)self.attributedString);
+            }
+        }
+        return _framesetter;
+    }
 }
 
 - (void)setAttributedString:(NSAttributedString *)attributedString

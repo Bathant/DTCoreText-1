@@ -418,16 +418,8 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 - (void)_buildLinesWithTypesetter
 {
     // framesetter keeps internal reference, no need to retain
-    CTTypesetterRef typesetter = NULL;
-    if (@available(iOS 12.0, *)) {
-        NSDictionary *typeSetterDic = [NSDictionary dictionaryWithObject:@"true"
-                                                                  forKey:kCTTypesetterOptionAllowUnboundedLayout];
-        CFDictionaryRef cFTypeSetterDic = (__bridge CFDictionaryRef)typeSetterDic;
-        CFAttributedStringRef cFAttributedString =( CFAttributedStringRef) CFBridgingRetain(_attributedStringFragment);
-         typesetter =  CTTypesetterCreateWithAttributedStringAndOptions(cFAttributedString,cFTypeSetterDic);
-    } else {
-        typesetter = CTFramesetterGetTypesetter(_framesetter);
-    }
+	CTTypesetterRef typesetter = CTFramesetterGetTypesetter(_framesetter);
+	
 	NSMutableArray *typesetLines = [NSMutableArray array];
 	
 	DTCoreTextLayoutLine *previousLine = nil;
