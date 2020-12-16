@@ -424,7 +424,7 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
                                                                   forKey:kCTTypesetterOptionAllowUnboundedLayout];
         CFDictionaryRef cFTypeSetterDic = (__bridge CFDictionaryRef)typeSetterDic;
         CFAttributedStringRef cFAttributedString =( CFAttributedStringRef) CFBridgingRetain(_attributedStringFragment);
-        CTTypesetterRef typesetter =  CTTypesetterCreateWithAttributedStringAndOptions(cFAttributedString,cFTypeSetterDic);
+         typesetter =  CTTypesetterCreateWithAttributedStringAndOptions(cFAttributedString,cFTypeSetterDic);
     } else {
         typesetter = CTFramesetterGetTypesetter(_framesetter);
     }
